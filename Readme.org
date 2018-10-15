@@ -2,3 +2,17 @@
 
 The process of initializing a configured namespace is a little convoluted. This repo contains the instructions for making a docker image that will do it for you, given a database server one can point at.
 
+It requires that you have already setup a database somewhere, and can access it using the following four parameters:
++ USER :: Database user
++ PASSWORD :: Database user's password
++ HOST :: Hostname or IP address of host
++ PORT :: (Optional) Database port. Defaults to 3306 if not provided.
+
+* Build
+#+BEGIN_SRC sh
+docker build --tag tobyhferguson/icn:latest .
+#+END_SRC
+* Run
+#+BEGIN_SRC sh
+docker run -it --rm tobyhferguson/icn:latest USER PASSWORD HOST [PORT]
+#+END_SRC
