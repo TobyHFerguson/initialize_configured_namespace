@@ -1,0 +1,4 @@
+* Initialize Configured Namespace
+
+The process of initializing a configured namespace is a little convoluted. This repo contains the instructions for making a docker image that will do it for you, given a database server one can point at.
+
