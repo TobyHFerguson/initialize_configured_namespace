@@ -1,13 +1,15 @@
 #!/bin/bash
 
-[ 3 -le $# -a $# -le 5 ] || { 
-    cat <<EOF
-icn USER PASSWORD HOSTNAME [PORT]
+[ 3 -le $# -a $# -lt 5 ] || { 
+    cat 1>&2 <<-EOF
+$(basename $0): ERROR: Expected between 3 and 4 arguments, got $# ${@:-"$@"}
 
-Initialize Configured Namespace for USER with PASSWORD connecting to HOSTNAME on PORT (defaults to 3306)
+$(basename $0): Usage: $(basename $0) USER PASSWORD HOSTNAME [PORT]
+	   Initialize Configured Namespace for USER with PASSWORD
+	   connecting to HOSTNAME on PORT (default: 3306) 
 EOF
-    exit 1;
-    }
+exit 1;
+}
 
 export MYSQL_PWD=${2:?"No password provided"}
 mysql <source_this.sql \
